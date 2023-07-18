@@ -149,3 +149,74 @@ let skiilBook: Book = {
 //초과 프로퍼티 검사를 해도 허용되는 경우
 let stroyBook: Book = programingBook;
 ```
+
+#### 대수타입
+
+여러개의 타입을 합성해서 새롭게 만들어내는 타입
+
+- 합집합 타입
+- 교집합 타입
+
+  1. 합집합 타입(Union 타입)
+
+  ```typescript
+  //기본타입 union 
+  let a: string | number;
+
+  a = 1;
+  a = '1';
+
+  let arr: (number|string)[] = [1, 'hi'];
+
+  //객체타입 union
+  type Dog = {
+    name: string;
+    color: string;
+  };
+
+  type Person = {
+    name: string;
+    age: number;
+  };
+
+  type Family = Dog | Person;
+
+  let family: Family = {
+    name: '',
+    color: '',
+  };
+
+  family = {
+    name: '',
+    color: '',
+    age: 0,
+  };
+  ```
+  2. 교집합 타입(Intersection 타입)
+  
+  기본타입에서의 교집합은 대부분 Never타입이기때문에
+  객체타입에서 사용하는 경우가 다수
+
+  ```typescript
+  //기본타입
+  let variable: number & string;
+
+  //객체타입
+  type Dog = {
+    name: string;
+    color: string;
+  };
+
+  type Person = {
+    name: string;
+    age: number;
+  };
+
+  type Intersection = Dog & Person;
+
+  let intersection: Intersection = {
+    name: '',
+    color: '',
+    age: 0,
+  };
+  ```
